@@ -1,8 +1,7 @@
-//Part B Prgram 2 Horspool string matching
-
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
+#include<time.h>
 
 #define MAX 500
 int t[MAX];
@@ -36,7 +35,9 @@ int horspool(char src[],char p[]) {
 	return -1;
 }
 
-void main() {
+void main()
+{	clock_t starttime,endtime;
+ 	double clk;
 	char src[50],p[10];
 	int pos;
         size_t buffersize=50;
@@ -46,12 +47,15 @@ void main() {
 		
 	printf("Enter the pattern to be searched:\n");
 	gets(p);
-
+	starttime=clock();
 	shifttable(p);
 	pos=horspool(src,p);
-
 	if(pos>=0)
-	     printf("\n The desired pattern was found starting from position %d",pos+1); else
-	printf("\n The pattern was not found in the given text\n");
+		printf("\n The desired pattern was found starting from position %d",pos+1); 
+ 	else
+		printf("\n The pattern was not found in the given text\n");
+ 	endtime=clock();
+ 	clk=(double)(endtime-starttime)/CLOCKS_PER_SEC;
+ 	printf("\n Total time taken is %f sec",clk);
 	
 }
